@@ -1,0 +1,7 @@
+cophieu68:
+  host: https://www.cophieu68.vn
+  login-uri: /account/login.php
+  daily-price-uri: /export/excelfull.php?id=
+  username: ${COPHIEU_68_USERNAME}
+  password: ${COPHIEU_68_PASSWORD}
+  login-request-template: "username=%s&tpassword=%s&ajax=1&login=1"

@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.khoa.stock.downloader.mapper.SecurityMapper">
+    <select id="getSecurity" resultType="security">
+        SELECT
+            s.id, s.ticker, s.name, s.industry, s.created_dt AS createdDateTime, s.updated_dt AS updatedDateTime
+        FROM
+            ta.security AS s
+        WHERE
+            s.ticker = #{ticker}
+    </select>
+
+    <select id="selectSecurities" resultType="security">
+        SELECT
+            s.id, s.ticker, s.name, s.industry, s.created_dt AS createdDateTime, s.updated_dt AS updatedDateTime
+        FROM
+            ta.security AS s
+    </select>
+</mapper>

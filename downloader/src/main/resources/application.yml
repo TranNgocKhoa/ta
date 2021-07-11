@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    hikari:
+      pool-name: HikariCP
+      minimum-idle: 4
+      maximum-pool-size: 16
+      connection-timeout: 10000
+      idle-timeout: 300000
+      max-lifetime: 600000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: Khoa2020
+
+
+  batch:
+    initialize-schema: never
+    job:
+      enabled: false
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.khoa.stock.core.model
+
+logging:
+  level:
+    root: INFO
+    com.khoa.stock.downloader: TRACE
