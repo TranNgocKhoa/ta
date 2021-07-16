@@ -38,7 +38,7 @@ public class Cp68DailyPriceService implements DailyPriceService {
     public boolean save(String ticker) {
         try {
             Security security = securityMapper.getSecurity(ticker);
-            doLogin();
+            this.doLogin();
             List<DailyPrice> priceHistories = stockHistoryService.getPriceHistory(ticker);
             LocalDate latestDailyPriceDate = dailyPriceMapper.selectLatestDailyPriceDate(security.getId());
 

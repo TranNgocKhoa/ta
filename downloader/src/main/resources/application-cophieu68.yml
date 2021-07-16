@@ -1,7 +1,20 @@
 cophieu68:
   host: https://www.cophieu68.vn
-  login-uri: /account/login.php
-  daily-price-uri: /export/excelfull.php?id=
-  username: ${COPHIEU_68_USERNAME}
-  password: ${COPHIEU_68_PASSWORD}
-  login-request-template: "username=%s&tpassword=%s&ajax=1&login=1"
+  daily-price:
+    uri: /export/excelfull.php?id=
+    headers:
+      Accept: "*/*"
+      Accept-Language: "vi,en;q=0.9"
+      Content-Type: "application/x-www-form-urlencoded; charset=UTF-8"
+      referrerOlicy: "strict-origin-when-cross-origin"
+  login:
+    uri: /account/login.php
+    username: ${COPHIEU_68_USERNAME}
+    password: ${COPHIEU_68_PASSWORD}
+    headers:
+      Accept: "*/*"
+      Accept-Language: "vi,en;q=0.9"
+      Content-Type: "application/x-www-form-urlencoded; charset=UTF-8"
+      referrerOlicy: "strict-origin-when-cross-origin"
+      "x-requested-with": "XMLHttpRequest"
+    request-template: "username=%s&tpassword=%s&ajax=1&login=1"

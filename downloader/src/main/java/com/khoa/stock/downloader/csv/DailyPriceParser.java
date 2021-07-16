@@ -1,41 +1,26 @@
 package com.khoa.stock.downloader.csv;
 
 import com.khoa.stock.core.model.DailyPrice;
-import com.opencsv.CSVReader;
 import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
-public class DailyPriceParser {
-    public List<DailyPrice> parse(ByteArrayInputStream byteArrayInputStream) {
-        try (CSVReader reader = new CSVReader(new InputStreamReader((byteArrayInputStream)))) {
-            List<String[]> strings = reader.readAll();
+public class DailyPriceParser implements CsvParser<DailyPrice> {
+    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private static final BigDecimal ONE_THOUSAND = BigDecimal.valueOf(1000);
 
-            return strings.stream()
-                    .skip(1)
-                    .map(this::parseTo)
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
-    }
-
-    private DailyPrice parseTo(String[] elements) {
+    @Override
+    public DailyPrice parseTo(String[] elements) {
         DailyPrice dailyPrice = new DailyPrice();
         dailyPrice.setName(elements[0]);
-        dailyPrice.setDate(LocalDate.parse(elements[1], DateTimeFormatter.ofPattern("yyyyMMdd")));
-        dailyPrice.setOpenPrice(new BigDecimal(elements[2]).multiply(BigDecimal.valueOf(1000)));
-        dailyPrice.setHighPrice(new BigDecimal(elements[3]).multiply(BigDecimal.valueOf(1000)));
-        dailyPrice.setLowPrice(new BigDecimal(elements[4]).multiply(BigDecimal.valueOf(1000)));
-        dailyPrice.setClosePrice(new BigDecimal(elements[5]).multiply(BigDecimal.valueOf(1000)));
+        dailyPrice.setDate(LocalDate.parse(elements[1], DATETIME_FORMATTER));
+        dailyPrice.setOpenPrice(new BigDecimal(elements[2]).multiply(ONE_THOUSAND));
+        dailyPrice.setHighPrice(new BigDecimal(elements[3]).multiply(ONE_THOUSAND));
+        dailyPrice.setLowPrice(new BigDecimal(elements[4]).multiply(ONE_THOUSAND));
+        dailyPrice.setClosePrice(new BigDecimal(elements[5]).multiply(ONE_THOUSAND));
         dailyPrice.setVolume(Integer.parseInt(elements[6]));
 
         return dailyPrice;

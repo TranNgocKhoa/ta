@@ -26,7 +26,7 @@ public class UpdateDailyPrice implements Tasklet {
     }
 
     @Override
-    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
         if (CollectionUtils.isNotEmpty(securityList)) {
             securityList.forEach(security -> dailyPriceService.save(security.getTicker()));
         }

@@ -22,7 +22,7 @@ public class ExtractSecurityList implements Tasklet {
     }
 
     @Override
-    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
         List<Security> securities = securityService.getSecurities();
 
         chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().put(ValueConstants.SECURITY_LIST, securities);
