@@ -48,6 +48,10 @@ public class Cophieu68Properties {
         return this.host + this.getDailyPrice().getUri() + ticker;
     }
 
+    public String getLoginUrl() {
+        return host + login.getUri();
+    }
+
     public static class BaseProperties {
         protected String uri;
         protected Map<String, String> headers;
