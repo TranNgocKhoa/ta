@@ -28,7 +28,8 @@ public class UpdateDailyPrice implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
         if (CollectionUtils.isNotEmpty(securityList)) {
-            securityList.forEach(security -> dailyPriceService.save(security.getTicker()));
+            securityList.parallelStream()
+                    .forEach(security -> dailyPriceService.save(security.getTicker()));
         }
 
         return RepeatStatus.FINISHED;

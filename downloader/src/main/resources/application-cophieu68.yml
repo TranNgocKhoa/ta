@@ -18,3 +18,13 @@ cophieu68:
       referrerOlicy: "strict-origin-when-cross-origin"
       "x-requested-with": "XMLHttpRequest"
     request-template: "username=%s&tpassword=%s&ajax=1&login=1"
+
+vndirect:
+  host: https://finfo-api.vndirect.com.vn
+  basic-indicator:
+    uri: "/v4/ratios/latest"
+    params:
+      filter: "itemCode:51003,51016,51001,51002,51004,57066,51007,51006,51012,51033,51035"
+      where: "code:%s~reportDate:%s"
+      order: "reportDate"
+      fields: "itemCode,value,itemName,reportDate"

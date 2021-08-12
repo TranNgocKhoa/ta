@@ -29,3 +29,13 @@ create table security
         unique (ticker)
 )
     comment 'company information' charset = utf8mb4;
+
+create table basic_indicator
+(
+    security_id int(11) unsigned not null,
+    p_over_b float default 0 not null,
+    p_over_e float default 0 not null,
+    date date not null,
+    created_dt datetime default CURRENT_TIMESTAMP not null,
+    updated_dt datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP not null
+);
